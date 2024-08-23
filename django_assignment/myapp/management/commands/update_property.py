@@ -4,18 +4,8 @@ import httpx
 import json
 import re
 from django.core.management.base import BaseCommand
-from dotenv import load_dotenv
+from config import SOURCE_DB
 from myapp.models import Property, PropertySummary
-
-load_dotenv()
-
-SOURCE_DB = {
-    'dbname': os.getenv('DJANGO_DATABASE', 'django_database'),
-    'user': os.getenv('DB_USER', 'postgres'),
-    'password': os.getenv('PASSWORD', 'p@stgress'),
-    'host': os.getenv('HOST', 'localhost'),
-    'port': os.getenv('PORT', '5433')
-}
 
 class Command(BaseCommand):
     help = 'Generate descriptions, titles, and summaries for properties using gemma2:2b and update the database.'

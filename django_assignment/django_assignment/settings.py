@@ -1,14 +1,9 @@
 from pathlib import Path
-from django.conf.urls.static import static
-import os
-from dotenv import load_dotenv
-from urllib.parse import quote_plus
-
-
-load_dotenv()
+from config import DATABASE_CONFIG, SECRET_KEY
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-ed*765rxcymxl#5(s@!5_!e!z&mpdr1vlv&80_vqe*7q^&4%1y'
+
+SECRET_KEY = SECRET_KEY
 DEBUG = True
 
 INSTALLED_APPS = [
@@ -50,25 +45,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_assignment.wsgi.application'
-PASSWORD = os.getenv('PASSWORD', 'p@stgress')
-HOST = os.getenv('HOST', 'localhost')
-DATABASE = os.getenv('DJANGO_DATABASE', 'django_database')
-USERNAME = os.getenv('DB_USER', 'postgres')
-PORT = os.getenv('PORT', '5433')
-
-
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DATABASE,     
-        'USER': USERNAME,          
-        'PASSWORD': PASSWORD,     
-        'HOST': HOST,               
-        'PORT': PORT                   
-    }
+    'default': DATABASE_CONFIG
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -85,23 +65,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MEDIA_URL = '/media/'  
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
-# http://127.0.0.1:8000/media/property_images/Burj_arab.jpg
-# /home/w3e11/Desktop/Django-Admin_Assignment/django_assignment/media/property_images/1mc3f12000d272kqk5CF8_R_250_250_R5_D.jpg
-# http://127.0.0.1:8000/media/property_images/1mc3f12000d272kqk5CF8_R_250_250_R5_D.jpg
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

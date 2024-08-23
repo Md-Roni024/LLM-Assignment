@@ -3,27 +3,7 @@ import psycopg2
 from datetime import datetime
 import requests
 from django.core.management.base import BaseCommand
-from dotenv import load_dotenv
-from django.conf import settings
-
-load_dotenv()
-
-# Database configurations from .env file
-SOURCE_DB = {
-    'dbname': os.getenv('SCRAPY_DATABASE', 'hotel_db'),
-    'user': os.getenv('DB_USER') or 'postgres',
-    'password': os.getenv('PASSWORD', 'p@stgress'),
-    'host': os.getenv('HOST', 'localhost'),
-    'port': os.getenv('PORT', '5433')
-}
-
-DEST_DB = {
-    'dbname': os.getenv('DJANGO_DATABASE', 'django_database'),
-    'user': os.getenv('DB_USER') or 'postgres',
-    'password': os.getenv('PASSWORD', 'p@stgress'),
-    'host': os.getenv('HOST', 'localhost'),
-    'port': os.getenv('PORT', '5433')
-}
+from config import SOURCE_DB, DEST_DB
 
 # Update IMAGE_PATH to reflect the folder structure
 IMAGE_PATH = "media/property_images/"
