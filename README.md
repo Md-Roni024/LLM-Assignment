@@ -111,7 +111,7 @@ django_assignment/
 
 2. Go to the project directory and Create Virtual Environment & activate
     ```bash
-    cd LLM_Assignment
+    cd LLM-Assignment
     python3 -m venv venv
 
     #For Linux | MacOS
@@ -147,6 +147,8 @@ django_assignment/
     ```
 6. Run CLI for migrate data to django database
     ```bash
+      #Data will move from pre-exist scrapy database: hotel_db to current 'django_database'
+      
       python3 manage.py migrate_data
     ```
 
