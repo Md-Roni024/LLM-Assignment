@@ -126,16 +126,36 @@ django_assignment/
    ```bash
    pip install -r requirements.txt
    ```
-4. Create a .env file then add variables credentials as bellow:
-    ```bash
-      HOST=localhost
-      PORT=5433
-      DB_USER=postgres
-      PASSWORD=p@stgress
-      SCRAPY_DATABASE=hotel_db
-      DJANGO_DATABASE=django_database
-    ```
+4. Create config.py as this demo
 
+    ```
+    DATABASE_CONFIG = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': django database name,
+        'USER': 'postgres',
+        'PASSWORD': database password,
+        'HOST': 'localhost',
+        'PORT': '5433',
+    }
+
+    SECRET_KEY = 'django-insecure-ed*765rxcymxl#5(s@!5_!e!z&mpdr1vlv&80_vqe*7q^&4%1y'
+
+    SOURCE_DB = {
+        'dbname': scrapy_database name,
+        'user': 'postgres',
+        'password': 'p@stgress',
+        'host': 'localhost',
+        'port': '5433',
+    }
+
+    DEST_DB = {
+        'dbname': django_database Name,
+        'user': 'postgres',
+        'password': database password,
+        'host': 'localhost',
+        'port': '5433',
+    }
+    ```
 
 5. Now Migrate the django datbase table
 
