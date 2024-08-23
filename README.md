@@ -167,8 +167,9 @@ django_assignment/
     ```bash
     python3 manage.py runserver
     ```
-    #Admin Dashboard Url
-   Go to this url: http://127.0.0.1:8000/admin/
+    #Admin Dashboard:
+
+    URL: http://127.0.0.1:8000/admin/
 
   
 
