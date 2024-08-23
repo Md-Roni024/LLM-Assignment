@@ -1,3 +1,4 @@
+# config.py
 DATABASE_CONFIG = {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'django_database',
@@ -24,3 +25,5 @@ DEST_DB = {
     'host': 'localhost',
     'port': '5433',
 }
+
+SCRAPY_DATABASE_TABLE_NAME = 'hotels_data'

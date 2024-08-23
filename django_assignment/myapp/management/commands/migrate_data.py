@@ -3,9 +3,8 @@ import psycopg2
 from datetime import datetime
 import requests
 from django.core.management.base import BaseCommand
-from config import SOURCE_DB, DEST_DB
+from config import SOURCE_DB, DEST_DB, SCRAPY_DATABASE_TABLE_NAME
 
-# Update IMAGE_PATH to reflect the folder structure
 IMAGE_PATH = "media/property_images/"
 
 class Command(BaseCommand):
@@ -36,7 +35,7 @@ class Command(BaseCommand):
             with open(image_filename, 'wb') as file:
                 for chunk in response.iter_content(chunk_size=8192):
                     file.write(chunk)
-            self.stdout.write(self.style.SUCCESS(f"Downloaded image from {image_url} to {image_filename}"))
+            # self.stdout.write(self.style.SUCCESS(f"Downloaded image from {image_url} to {image_filename}"))
             return image_filename
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Failed to download image from {image_url}: {e}"))
@@ -54,7 +53,10 @@ class Command(BaseCommand):
             dest_conn = psycopg2.connect(**DEST_DB)
             dest_cursor = dest_conn.cursor()
 
-            src_cursor.execute("SELECT id, title, price, room_type, rating, location, latitude, longitude, image_url FROM hotels_data")
+            # Check that SCRAPY_DATABASE_TABLE_NAME is correctly imported
+            # print(f"Table Name: {SCRAPY_DATABASE_TABLE_NAME}")  # Debug print
+
+            src_cursor.execute(f"SELECT id, title, price, room_type, rating, location, latitude, longitude, image_url FROM {SCRAPY_DATABASE_TABLE_NAME}")
             rows = src_cursor.fetchall()
 
             for row in rows:

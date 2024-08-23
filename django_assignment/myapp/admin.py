@@ -93,7 +93,6 @@ class ImageAdmin(admin.ModelAdmin):
 
 class PropertySummaryAdmin(admin.ModelAdmin):
     list_display = ('property','property_id','summary','create_date', 'update_date')
-    search_fields = ('property','property_id')
     list_filter = ('create_date', 'update_date')
     list_per_page = 16
 

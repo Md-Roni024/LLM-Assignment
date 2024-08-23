@@ -155,6 +155,7 @@ django_assignment/
         'host': 'localhost',
         'port': '5433',
     }
+    SCRAPY_DATABASE_TABLE_NAME = 'hotels_data'
     ```
 
 5. Now Migrate the django datbase table
